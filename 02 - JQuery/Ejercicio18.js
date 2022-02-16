@@ -1,0 +1,3 @@
+function toggleText() {
+    $('#divMsg').toggle();
+}
