@@ -1,4 +1,4 @@
-// Callbacks
+// Promesa encadenada
 
 const empleados = [
     {
@@ -39,7 +39,8 @@ const getEmpleado = (id) => {
         const empleado = empleados.find( (e) => e.id === id )?.nombre;
         if (empleado) {
             resolve(empleado) ;
-        } else {    
+        } else {
+            reject( `El empleado con id ${id} no existe.`);
         }
 
     } );
@@ -58,14 +59,13 @@ const getSalario = (id) => {
     return promesa;
 };
 
-let id = 1;
+let id = 4;
+
+
 
 getEmpleado(id)
-    .then( (empleado) => { console.log(empleado ); } )
-    .catch( (err) => { console.log(err); } );
-
-getSalario(id)
-    .then( (salario) => { console.log(salario); })
-    .catch( (err) => { console.log(err); } );
-
-
+    .then( (empleado) => {
+        return getSalario(id)
+    .then( (salario) => { console.log(`El empleado ${empleado} gana ${salario}`); 
+    })
+    }).catch( (err) => { console.log(err); } );
