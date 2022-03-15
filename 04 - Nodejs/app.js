@@ -1,74 +1,29 @@
-// async y await
+//  Ejercicios de NodeJs
+//  Principios de nodejs
+const fs = require('fs');
 
+const base = 5;
 
-const empleados = [
-    {
-        id: 1,
-        nombre: "Roberto"
-    },
-    {
-        id: 2,
-        nombre: "Juan"
-    },
-    {
-        id: 3,
-        nombre: "Susana"
-    },
-    {
-        id: 4,
-        nombre: "David"
+const crearArchivo = async(base) => {
+    
+    let salida = "";
+
+    for (let i = 0; i < 10; i++) {
+        salida += `${base} * ${i} = ${base * i}\n`; 
     }
-];
 
-const salarios = [
-    {
-        id: 1,
-        salario: 500.0
-    },
-    {
-        id: 2,
-        salario: 900.0
-    },
-    {
-        id: 3,
-        salario: 1500.0
-    },
-];
-
-const getEmpleado = (id) => {
-    const promesa = new Promise( (resolve, reject) => {
-        const empleado = empleados.find( (e) => e.id === id )?.nombre;
-        if (empleado) {
-            resolve(empleado) ;
-        } else {
-            reject( `El empleado con id ${id} no existe.`);
-        }
-
-    } );
-    return promesa;
-};
-
-const getSalario = (id) => {
-    const promesa = new Promise((resolve, reject) => {
-        const salario = salarios.find( (s) => s.id === id )?.salario;
-        if (salario) {
-            resolve(salario) ;
-        } else {
-            reject( `El empleado con id ${id} no tiene salario.`);
-        }
+    console.clear();
+    console.log("================");
+    console.log(" Tabla del 5");
+    console.log("================");
+    console.log(salida);
+    fs.writeFile(`Tabla-${base}.txt`, salida, (err) => {
+        if(err) throw err;
     });
-    return promesa;
+    return `Tabla-${base}`
+
 };
 
-let id = 4;
-
-const getInfoUsuario =  async () => {
-    const empleado = await getEmpleado(id);
-    const salario = await getSalario(id);
-
-    return `El empleado ${empleado} gana ${salario}.`;
-}
-
-getInfoUsuario()
-    .then( (msg) => { console.log(msg);} )
-    .catch( err => console.log(err) );
+crearArchivo(base)
+    .then(nombreArchivo => console.log( nombreArchivo + " creada") )
+    .catch(err => console.log(err) );

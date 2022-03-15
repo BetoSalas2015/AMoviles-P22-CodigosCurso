@@ -63,7 +63,7 @@ const getSalario = (id) => {
 let id = 4;
 
 const getInfoUsuario =  async () => {
-    const empleado = await getEmpleado(id);
+    const empleado = await getEmpleado(id); 
     const salario = await getSalario(id);
 
     return `El empleado ${empleado} gana ${salario}.`;
