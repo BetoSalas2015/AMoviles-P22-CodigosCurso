@@ -28,8 +28,6 @@ const crearArchivo = async(base) => {
         throw error;
     }
     
-    
-
 };
 
 crearArchivo(base)

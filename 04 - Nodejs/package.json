@@ -1,0 +1,19 @@
+{
+  "name": "04---nodejs",
+  "version": "0.0.1",
+  "description": "Proyecto de tablas de multiplicar",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "base3": "node app.js --base=3"
+  },
+  "keywords": [
+    "nodejs",
+    "js"
+  ],
+  "author": "Roberto Salazar Marquez",
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^17.3.1"
+  }
+}
