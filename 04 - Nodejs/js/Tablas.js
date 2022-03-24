@@ -1,5 +1,6 @@
 //  Tablas V.02
 const fs = require('fs');
+require('colors');
 
 const crearArchivo = async(base, limite, echo) => {
     
@@ -11,10 +12,10 @@ const crearArchivo = async(base, limite, echo) => {
     }
 
     if (echo) {
-        console.log("================");
+        console.log("================".red);
         console.log(` Tabla del ${base}`);
-        console.log("================");
-        console.log(salida);
+        console.log("================".red);
+        console.log(salida.green);
     }
     
     fs.writeFile(`Tabla-${base}.txt`, salida, (err) => {
