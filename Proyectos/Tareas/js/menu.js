@@ -29,9 +29,22 @@ const menu = () => {
 
 };
 
-const pausa = () => {};
+const pausa = () => {
+    return new Promise( (resolve, reject) => {
+       
+        const readline = require('readline').createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
+
+        readline.question(`Presione ${'ENTER'.red} para continuar`, () => {
+            readline.close();
+            resolve();
+        });
+    });
+};
 
 module.exports = {
     menu,
-    pause
+    pausa
 };
